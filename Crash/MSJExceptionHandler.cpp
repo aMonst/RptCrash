@@ -316,7 +316,7 @@ BOOL CMSJExceptionHandler::GetTraceBack(PCONTEXT pContext)
 	pSym->MaxNameLength = sizeof(MSJSYMBOL_INFO) - offsetof(MSJSYMBOL_INFO, symInfo.Name);
 	IMAGEHLP_LINE ImageLine = { 0 };
 	ImageLine.SizeOfStruct = sizeof(IMAGEHLP_LINE);
-
+	
 	while (StackWalk(IMAGE_FILE_MACHINE_I386, m_hProcess, m_hThread, &sf, pContext, NULL, SymFunctionTableAccess, SymGetModuleBase, NULL))
 	{
 		SymGetSymFromAddr(m_hProcess, sf.AddrPC.Offset, &dwDisplament, pSym);

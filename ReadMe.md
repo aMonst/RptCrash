@@ -52,3 +52,11 @@ TraceBack:
 [记录程序崩溃时的调用堆栈](https://blog.csdn.net/qing666888/article/details/41026375)
 
 [windows平台调用函数堆栈的追踪方法](https://blog.csdn.net/lanuage/article/details/52203447)
+
+## V1.0 版本
+在上述基础之上增添了一些功能，改写了全部的代码结构
+
+1. 程序主要分为2个类，CStackWalker 类主要负责获取模块和堆栈信息,CBaseException 主要处理异常的相关操作
+2. CBaseException 中所有方法都可以重写，其中最重要的是重写OutputString, 特别是您希望将它写到文件中的时候，只需要重写该方法，将输出写入到文件中即可
+3. CBaseException 类提供两种使用方法，可以使用SET_DEFULTER_HANDLER 宏来定义全局的异常处理函数或者使用SET_DEFAUL_EXCEPTION将异常转化为C++异常，具体的使用方法参考main.cpp文件
+4. 修改之前版本中由于未加载全部符号表可能导致的获取函数调用堆栈失败的情况
